@@ -11,11 +11,11 @@
 `   <div  class="d-flex justify-content-center align-items-center vh-100">
         <form class="card col-12 col-md-5 col-lg-4">
             <div class="card-body">
-                <h1 class="text-center mb-0 text-primary" style="font-size:40pt">Cookeville, TN</h1>
-                <h1 id="weather" class="text-center" style="font-size:100pt"></h1>
-                <h4 id="temp" class="text-center mt-2 text-primary" style="font-size:25pt" id="displayTemp"></h4>
-                <h4 id="humidity" class="text-center mt-2 mb-2 text-primary" id="displayHumidity"></h4>
-                <p id="credits" class="text-center mt-4 mb-0 text-seconday">Courtesy of open mateo, which can be found here : https://open-meteo.com/en/docs</p>
+                <h1 class="text-center mb-0 text-primary" style="font-size:40pt" aria-label="Cookeville, TN">Cookeville, TN</h1>
+                <h1 id="weather" class="text-center" style="font-size:100pt" aria-label ='the current condition image'></h1>
+                <h4 id="temp" class="text-center mt-2 text-primary" style="font-size:25pt" id="displayTemp" aria-label="the current temperature "></h4>
+                <h4 id="humidity" class="text-center mt-2 mb-2 text-primary" id="displayHumidity" aria-label="the current humidity"></h4>
+                <p id="credits" class="text-center mt-4 mb-0 text-seconday"aria-label='credit to open-meteo.com for the weather information displayed here'>Courtesy of open mateo, which can be found here : https://open-meteo.com/en/docs</p>
             </div>
     </form>
     </div>
@@ -25,13 +25,17 @@
         const strApi =   'https://api.open-meteo.com/v1/forecast?latitude=36.1628&longitude=-85.50164&current=temperature_2m,relative_humidity_2m,rain,showers,snowfall&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch'
         let intTemp = 0
         let intHumidity=0
-
+        //the above initilizes the api call and inttemp and humidity variables, while not technically needed i decided id to it here
+        //fetch for api response, turns it into json, then into the objdata
         fetch(strApi).then(objResponse => objResponse.json()).then(objData =>{
+            //adds data to both int temp and int humidity
             intTemp = objData.current.temperature_2m
             intHumidity = objData.current.relative_humidity_2m
+            //adds the html for temp and himidity by id
             document.getElementById('temp').innerHTML = intTemp +" F"
 
             document.getElementById('humidity').innerHTML = "Humidity: " + intHumidity 
+            //adds the bootstrap icon depending on the weather.
             if(objData.current.rain > 0 || objData.current.showers > 0){
                 document.getElementById('weather').innerHTML = "<i class ='bi bi-cloud-rain'></i>"
             }
