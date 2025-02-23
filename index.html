@@ -25,11 +25,11 @@
         <form class="card col-12 col-md-5 col-lg-4">
             <div class="card-body">
                 <div class="row">
-                    <div class=" col-6 col-md-8">
+                    <div class="col-md-8">
                     <h1 class="text-center mb-0 text-primary" style="font-size:40pt" aria-label="Cookeville, TN">Cookeville, TN</h1>
                     <h1 id="weather" class="text-center" style="font-size:100pt" aria-label ='the current condition image'></h1>
                     </div>
-                    <div class=" col-6 col-md-4">
+                    <div class="col-md-4">
                     <h4 id="temp" class="center-block text-center mt-5 mb-5 text-primary" style="font-size:25pt" id="displayTemp" aria-label="the current temperature "></h4>
                     <h4 id="humidity" class=" center-block text-center mt-5 mb-5 text-primary center-block" id="displayHumidity" aria-label="the current humidity"></h4>
                 </div>
@@ -57,17 +57,23 @@
             intHumidity = objData.current.relative_humidity_2m
             //adds the html for temp and himidity by id
             document.getElementById('temp').innerHTML = intTemp +" F"
+            document.getElementById('temp').setAttribute('aria-label','The current temperature: ' + intTemp)
 
             document.getElementById('humidity').innerHTML = "Humidity: " + intHumidity 
+            document.getElementById('humidity').setAttribute('aria-label','The current Humidity: ' + intHumidity)
             //adds the bootstrap icon depending on the weather.
             if(objData.current.rain > 0 || objData.current.showers > 0){
                 document.getElementById('weather').innerHTML = "<i class ='bi bi-cloud-rain'></i>"
+                document.getElementById('weather').setAttribute('aria-label',"Current Conditions: Rain")
+
             }
             else if(objData.current.snow > 0){
                 document.getElementById('weather').innerHTML ='<i class="bi bi-cloud-snow"></i>'
+                document.getElementById('weather').setAttribute('aria-label',"Current Conditions: Snow")
             }
             else{
                 document.getElementById('weather').innerHTML = '<i class="bi bi-sun"></i>'
+                document.getElementById('weather').setAttribute('aria-label',"Current Conditions: Sunny")
             }
         })
 
