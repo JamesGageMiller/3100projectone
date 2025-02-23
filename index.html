@@ -36,8 +36,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript"src='add-to-homescreen-master/src/addtohomescreen.js'></script>
     <script>
-        if((('standalone' in window.navigator)&& !window.navigator.standalone)|| (window.matchMedia('(display-mode: standalone)').matches)){
-            addToHomeScreen()
+        if((("standalone" in window.navigator)&& !window.navigator.standalone)|| (window.matchMedia('(display-mode: standalone)').matches)){
+            addToHomescreen()
         }
         const strApi =   'https://api.open-meteo.com/v1/forecast?latitude=36.1628&longitude=-85.50164&current=temperature_2m,relative_humidity_2m,rain,showers,snowfall&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch'
         let intTemp = 0
